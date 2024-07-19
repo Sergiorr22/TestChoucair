@@ -1,0 +1,78 @@
+group 'Test'
+version '1.0'
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'java-library'
+apply plugin: 'jacoco'
+apply plugin: 'maven-publish'
+apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
+
+
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+def serenityCoreVersion='3.3.2'
+
+def lombokVersion = '1.18.22'
+
+
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:3.3.2"
+    }
+}
+
+
+dependencies {
+
+    implementation ('net.serenity-bdd:serenity-core:' + serenityCoreVersion)
+    implementation "net.serenity-bdd:serenity-junit5:${serenityCoreVersion}"
+    implementation "net.serenity-bdd:serenity-cucumber:${serenityCoreVersion}"
+    implementation "net.serenity-bdd:serenity-rest-assured:${serenityCoreVersion}"
+    implementation "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenityCoreVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay-rest:${serenityCoreVersion}"
+    implementation "io.github.bonigarcia:webdrivermanager:5.0.3"
+
+    implementation 'io.github.bonigarcia:webdrivermanager:5.6.3'
+    testImplementation("io.cucumber:cucumber-java:6.10.4")
+    testImplementation("io.cucumber:cucumber-junit:6.10.4")
+
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+
+}
+test {
+    useJUnit {
+        include "**/*";
+        gradle.startParameter.continueOnFailure = true
+        testLogging.showStandardStreams = true
+        systemProperties System.getProperties()
+        systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
+    }
+}
+
+serenity {
+    testRoot = "co.com.templay.pom.runners"
+    requirementsBaseDir = "src/test/resources/features"
+    reports = ["single-page-html"]
+}
+
+test.finalizedBy(aggregate)
