@@ -54,7 +54,6 @@ public class RecruitmentPage extends PageObject {
     public static final Target INPUT_DATE = Target.the("getDate")
             .located(By.xpath("//input[@placeholder='yyyy-dd-mm']"));
 
-
     public static final Target OPTION = Target.the("getOption")
             .located(By.xpath("//span[.='James  Butler']"));
 

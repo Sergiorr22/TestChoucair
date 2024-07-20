@@ -54,7 +54,7 @@ public class WebActions extends PageObject {
         try {
             WebDriverWait wait = new WebDriverWait(getDriver(), getSerenityTime());
             wait.until(ExpectedConditions.visibilityOf(element));
-            element.clear();
+            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].value = '';", element);
             element.type(strText);
         } catch (Exception e) {
             logger.error("en la clase AccionesWeb en el metodo writeText " + e);
