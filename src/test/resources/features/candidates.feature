@@ -9,3 +9,4 @@ Feature: Candidates
     And user enters email "ruizsergio48@gmail.com" and contact number "3133724686"
     And the user uploads his CV
     And user saves the record
+    And The user clicks on shortlist and saves

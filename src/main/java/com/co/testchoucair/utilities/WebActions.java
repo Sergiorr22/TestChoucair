@@ -78,6 +78,12 @@ public class WebActions extends PageObject {
         return Tasks.instrumented(ScrollTo.class, target);
     }
 
+    public Interaction waitForElement(Target target) {
+        return Tasks.instrumented(WaitForElement.class, target);
+    }
+
+
+
 
     public static class HighlightElement implements Interaction {
         private final Target target;
@@ -139,5 +145,24 @@ public class WebActions extends PageObject {
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         }
     }
+
+    public static class WaitForElement implements Interaction {
+        private final Target target;
+
+
+        public WaitForElement(Target target) {
+            this.target = target;
+
+        }
+
+        @Override
+        public <T extends Actor> void performAs(T actor) {
+            WebDriver driver = BrowseTheWeb.as(actor).getDriver();
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.visibilityOf(target.resolveFor(actor)));
+        }
+    }
+
+
 
 }

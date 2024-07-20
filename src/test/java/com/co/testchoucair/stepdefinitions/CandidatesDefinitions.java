@@ -54,5 +54,8 @@ public class CandidatesDefinitions {
     }
 
 
-
+    @And("The user clicks on shortlist and saves")
+    public void theUserClicksOnShortlistAndSaves() {
+        user.attemptsTo(ShortListTask.shortList(webActions));
+    }
 }

@@ -39,5 +39,21 @@ public class RecruitmentPage extends PageObject {
     public static final Target BTN_SAVE = Target.the("getSave")
             .located(By.xpath("//button[.=' Save ']"));
 
+    public static final Target BTN_SHORTLIST = Target.the("getShortlist")
+            .located(By.xpath("//button[.=' Shortlist ']"));
+
+    public static final Target BTN_SCHEDULE = Target.the("getSchedule")
+            .located(By.xpath("//button[@type='button' and text()=' Schedule Interview ']"));
+
+    public static final Target INPUT_INTERVIEWTITLE = Target.the("getTitle")
+            .located(By.xpath("//label[.='Interview Title']//following::input[1]"));
+
+    public static final Target INPUT_INTERVIEW = Target.the("getInterview")
+            .located(By.xpath("//input[@include-employees='onlyCurrent']"));
+
+    public static final Target INPUT_DATE = Target.the("getDate")
+            .located(By.xpath("//input[@placeholder='yyyy-dd-mm']"));
+
+
 
 }

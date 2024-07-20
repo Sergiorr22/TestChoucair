@@ -6,25 +6,29 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 
-public class SaveTask implements Task {
+public class ShortListTask implements Task {
 
     private final WebActions webActions;
 
-
-    public SaveTask(WebActions webActions){
+    public ShortListTask(WebActions webActions){
         this.webActions = webActions;
     }
 
     @Override
     public <T extends Actor> void performAs(T actor){
         actor.attemptsTo(
-                webActions.scrollTo(RecruitmentPage.BTN_SAVE),
+                webActions.waitForElement(RecruitmentPage.BTN_SHORTLIST),
+                webActions.highlightElement(RecruitmentPage.BTN_SHORTLIST),
+                webActions.clickButton(RecruitmentPage.BTN_SHORTLIST),
+                webActions.waitForElement(RecruitmentPage.BTN_SAVE),
                 webActions.highlightElement(RecruitmentPage.BTN_SAVE),
                 webActions.clickButton(RecruitmentPage.BTN_SAVE)
         );
     }
 
-    public static SaveTask Saving(WebActions webActions){
-        return Tasks.instrumented(SaveTask.class, webActions);
+    public static ShortListTask shortList(WebActions webActions){
+        return Tasks.instrumented(ShortListTask.class, webActions);
     }
+
+
 }
