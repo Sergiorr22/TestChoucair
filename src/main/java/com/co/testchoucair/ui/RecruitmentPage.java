@@ -55,5 +55,28 @@ public class RecruitmentPage extends PageObject {
             .located(By.xpath("//input[@placeholder='yyyy-dd-mm']"));
 
 
+    public static final Target OPTION = Target.the("getOption")
+            .located(By.xpath("//span[.='James  Butler']"));
+
+    public static final Target BTN_PASSED = Target.the("getPassed")
+            .located(By.xpath("//button[.=' Mark Interview Passed ']"));
+
+    public static final Target BTN_OFFERJOB = Target.the("getOffer")
+            .located(By.xpath("//button[.=' Offer Job ']"));
+
+    public static final Target BTN_HIRE = Target.the("getHire")
+            .located(By.xpath("//button[.=' Hire ']"));
+
+//    public static final Target LBL_FORM = Target.the("getForm")
+//            .located(By.xpath("(//div[@class='orangehrm-card-container'])[1]"));
+
+    public static final Target CONFIRM_NAME = Target.the("")
+            .located(By.xpath("//div[.='Name']//following::p[1]"));
+
+    public static final Target CONFIRM_VACANCY = Target.the("getVacancy")
+            .located(By.xpath("(//div[@data-v-957b4417]//p[contains(@class, 'oxd-text') and contains(@class, 'oxd-text--p')])[2]"));
+
+    public static final Target CONFIRM_STATUS = Target.the("getStatus")
+            .located(By.xpath("//p[.='Status: Hired']"));
 
 }

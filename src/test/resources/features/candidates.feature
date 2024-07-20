@@ -10,3 +10,6 @@ Feature: Candidates
     And the user uploads his CV
     And user saves the record
     And The user clicks on shortlist and saves
+    And The user clicks on schedule and fills out the data "Prueba", "James", "2024-20-07"
+    And the user completes the candidate process
+    Then the user should see the name "Sergio Steven Rodriguez", vacancy "Senior QA Lead", and status Hired
